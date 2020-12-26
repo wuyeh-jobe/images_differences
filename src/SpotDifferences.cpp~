@@ -1,0 +1,46 @@
+#include "SpotDifferences.h"
+
+void SpotDifferences::spotImageDifference(std::string inputImage1, std::string inputImage2, std::string diffImagePath){
+	// These two lines will read the input images. Do not change these lines. 
+	Mat srcImage1 = imread(inputImage1.c_str());
+	Mat srcImage2 = imread(inputImage2.c_str());
+
+
+	// This data structure must contain coordinates of the differences. 
+	vector < vector<Point> > contours_poly();
+	
+	// Write your code BELOW this line. 
+	
+
+	
+	// Write your code ABOVE this line. 
+
+
+
+	// The following lines of code generate the required output. Do not change these. 
+	Mat drawing = imread(inputImage1.c_str());
+	Mat contourMask(drawing.rows, drawing.cols, drawing.type(), Scalar(0,0,0));
+
+	ofstream myfileStream;
+	myfileStream.open(diffImagePath + "_differences.txt");
+
+	for (size_t i = 0; i < contours.size(); i++) {
+		drawContours(contourMask, contours_poly, (int) i, Scalar(255, 255, 255), cv::FILLED);
+		drawContours(drawing, contours_poly, (int) i, Scalar(255, 255, 255), cv::FILLED);
+		drawContours(drawing, contours_poly, (int) i, Scalar(0, 0, 255), 5);
+
+		myfileStream << "[ Contour no:" << i << ", TopLeft:" << boundRect[i].tl() << ", BottomRight:"
+				<< boundRect[i].br() << "], Contour coordinates:[";
+		for (int contourIndx = 0; contourIndx < contours_poly[i].size(); contourIndx++)
+			myfileStream << contours_poly[i][contourIndx];
+
+		myfileStream << "]\n";
+	}
+	imwrite(diffImagePath + "_diffMaskAndImage.png", drawing);
+	imwrite(diffImagePath + "_diffMask.png", contourMask);
+	myfileStream.close();
+
+	myfileStream.open(diffImagePath + "_differenceCount.txt");
+	myfileStream << contours.size();
+	myfileStream.close();
+}
