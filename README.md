@@ -1,2 +1,2 @@
-#  Spotting Differences Between Affine Invarient Images and Counting the Number of Object Differences
+#  Spotting Differences Between Affine Invariant Images and Counting the Number of Object Differences
 Spotting differences between images have wide ranging applications including fraud detection in various facets of human activity. However, this is not trivial especially when the images are distorted. In this paper, we discuss some of the ideas that were tried and what finally gave promising results. We also discussed the challenges encountered and the limitations of the solution.
